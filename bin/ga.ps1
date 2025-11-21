@@ -2,6 +2,11 @@ param(
   [string]$Ga2Host = "127.0.0.1" # IP del primary (A)
 )
 
+if ($Ga2Host -eq "IP_A" -or [string]::IsNullOrWhiteSpace($Ga2Host)) {
+  Write-Error "Debes indicar la IP real del primary (GA2). Ejemplo: .\\ga.ps1 10.0.0.5"
+  exit 1
+}
+
 & "$PSScriptRoot\setup_env.ps1"
 
 $env:GA_BIND_HOST="0.0.0.0"; $env:GA_PORT="6057"
