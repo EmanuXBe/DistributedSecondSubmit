@@ -1,0 +1,39 @@
+// Especifica que se está utilizando la sintaxis proto3
+syntax = "proto3";
+
+// Define el paquete de Java en el que se generará el código
+option java_package = "com.example";
+
+// Especifica que se generará un archivo por cada mensaje y servicio definido
+option java_multiple_files = true;
+
+// Define un servicio llamado SortService
+service SortService {
+  // Define un método RPC llamado SortArray que toma un mensaje de tipo Array y devuelve un mensaje de tipo Array
+  rpc SortArray(Array) returns (Array){}
+}
+
+// Define un servicio llamado MessageService
+service MessageService {
+  // Define un método RPC llamado SendMessage que toma un mensaje de tipo Message y devuelve un mensaje de tipo Message
+  rpc SendMessage(Message) returns (Message){}
+}
+
+// Define un mensaje llamado Array
+message Array {
+  // Define un campo repetido de enteros de 32 bits llamado data
+  // El número 1 indica el identificador único del campo dentro del mensaje
+  repeated int32 data = 1;
+}
+
+// Define un mensaje llamado Message
+message Message {
+  // Los identificadores deben ser únicos solo dentro del mismo mensaje
+  // Puede haber diferentes tipos de datos, por ejemplo:
+  // string message = 1;
+  // int32 id = 2;
+  // bool correct = 3;
+  
+  string message = 1;
+  string ip = 2;
+}
